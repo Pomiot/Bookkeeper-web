@@ -27,6 +27,14 @@ public class Author {
         this.id = id;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
     public String getFirstName() {
         return firstName;
     }
