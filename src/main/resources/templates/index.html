@@ -1,68 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="books">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Bookkeeper</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/static/css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+    <script type="text/javascript" src="js/books.js"></script>
+    <link rel="stylesheet" href="css/style.css"/> <!-- check how to make this crap work -->
 </head>
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="container">
-    <header>
+    <header class="jumbotron">
         <h1>Bookkeeper</h1>
         <h3>
             For keeping books.
         </h3>
     </header>
-    <div>
-        <div class="row">
-            <div class="row">
-                <div>
-                    <img src="http://placehold.it/50x50" class="img-rounded" alt="placeholder" width="50" height="50">
-                </div>
-                <div class="container">
-                    <div>
-                        <h4>Title</h4>
-                        <div>Author</div>
-                    </div>
-                    <div>
-                        <div>Description</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="row">
-                <img src="http://placehold.it/50x50" class="img-rounded" alt="placeholder" width="50" height="50">
-                <div class="container">
-                    <div>
-                        <h4 class="col-md-4">Title</h4>
-                        <div class="col-md-4">Author</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">Description</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row">
-                <img src="http://placehold.it/50x50" class="img-rounded" alt="placeholder" width="50" height="50">
-                <div class="container">
-                    <div>
-                        <h4 class="col-md-4">Title</h4>
-                        <div class="col-md-4">Author</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">Description</div>
-            </div>
-        </div>
+    <h2 class="sub-header">My books</h2>
+    <div class="table-responsive" ng-controller="BookController as booklist">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Rating</th>
+                <th>Lent</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in booklist.items">
+                <td>1,001</td>
+                <td>{{item.title}}</td>
+                <td>{{item.author}}</td>
+                <td>{{item.rating}}</td>
+                <td>{{item.lent}}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
