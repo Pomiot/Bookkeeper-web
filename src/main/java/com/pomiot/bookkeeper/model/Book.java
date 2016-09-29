@@ -24,11 +24,21 @@ public class Book {
 
     private Boolean isLent;
 
+    private Boolean isRead;
+
     @Min(1)
     @Max(10)
     private Integer rating;
 
     public Book() {
+    }
+
+    public Boolean getRead() {
+        return isRead;
+    }
+
+    public void setRead(Boolean read) {
+        isRead = read;
     }
 
     public Boolean getLent() {

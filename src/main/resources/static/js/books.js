@@ -2,39 +2,34 @@
 
     var app = angular.module('books', []);
 
-    app.controller('BookController', [ '$http', function($http){
+    app.controller('BookController', [ '$http', '$scope', '$log', function($http, $scope, $log){
 
-        var booklist = this;
-        booklist.items = [];
+        $scope.items = [];
+        $scope.next20 = "";
+        $scope.prev20 = "";
 
-        $http.get('/books').success(function(data){
-            booklist.items = data._embedded.books;
-        })
+        $log.log('initial load of data');
+        $http.get('/books').then(loadData);
 
+        $scope.nextPage = function(){
+            $log.log('inside nextPage()');
+            $http.get($scope.next20).then(loadData);
+        }
+
+        $scope.prevPage = function(){
+            $log.log('inside prevPage()');
+            $http.get($scope.prev20).then(loadData);
+        }
+
+        function loadData(response){
+            $log.log(response);
+            $scope.items = response.data._embedded.books;
+            if(response.data._links.next !== undefined){
+                $scope.next20 = response.data._links.next.href;
+            }
+            if(response.data._links.prev !== undefined){
+                $scope.prev20 = response.data._links.prev.href;
+            }
+        }
     }]);
-
-    var book = [{
-            title : 'Sample title 1',
-            author : 'Sample author 1',
-            rating : 5,
-            lent : false
-        },
-        {
-            title : 'Sample title 2',
-            author : 'Sample author 1',
-            rating : 3.5,
-            lent : true
-        },
-        {
-            title : 'Sample title 3',
-            author : 'Sample author 2',
-            rating : 4,
-            lent : false
-        },
-        {
-            title : 'Sample title 4',
-            author : 'Sample author 3',
-            rating : 1,
-            lent : false
-        }]
 })();
