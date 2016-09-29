@@ -3,7 +3,9 @@ package com.pomiot.bookkeeper.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Book {
@@ -12,12 +14,38 @@ public class Book {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String title;
 
-    @ManyToOne
-    private Author author;
+    @NotNull
+    private String author;
 
     private String description;
+
+    private Boolean isLent;
+
+    @Min(1)
+    @Max(10)
+    private Integer rating;
+
+    public Book() {
+    }
+
+    public Boolean getLent() {
+        return isLent;
+    }
+
+    public void setLent(Boolean lent) {
+        isLent = lent;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 
     public String getDescription() {
         return description;
@@ -43,11 +71,11 @@ public class Book {
         this.title = title;
     }
 
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 }

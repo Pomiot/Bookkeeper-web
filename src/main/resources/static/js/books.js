@@ -2,9 +2,16 @@
 
     var app = angular.module('books', []);
 
-    app.controller('BookController', function(){
-        this.items = book;
-    });
+    app.controller('BookController', [ '$http', function($http){
+
+        var booklist = this;
+        booklist.items = [];
+
+        $http.get('/books').success(function(data){
+            booklist.items = data._embedded.books;
+        })
+
+    }]);
 
     var book = [{
             title : 'Sample title 1',

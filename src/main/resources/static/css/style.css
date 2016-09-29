@@ -1,0 +1,12 @@
+.bookRow:hover{
+    color:red ;
+}
+
+body {
+    background-image: url("/images/books.jpg");
+    background-size: cover;
+}
+
+.bookview {
+    background-color: white;
+}
