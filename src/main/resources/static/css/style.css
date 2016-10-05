@@ -1,12 +1,27 @@
-.bookRow:hover{
-    color:red ;
+.bookRow{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px 0px 10px 20px;
 }
 
 body {
     background-image: url("/images/books.jpg");
-    background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
 }
 
 .bookview {
     background-color: white;
+}
+
+.book-details {
+    display: none;
+    padding: 20px;
+}
+
+.show-details {
+}
+
+.jumbotron {
+
 }

@@ -21,6 +21,12 @@
             $http.get($scope.prev20).then(loadData);
         }
 
+        $scope.showDetails = function($event){
+            $log.log('inside showDetails()');
+            $log.log($event);
+            $($event.target).closest('.bookRow').find('.book-details').slideToggle();
+        }
+
         function loadData(response){
             $log.log(response);
             $scope.items = response.data._embedded.books;

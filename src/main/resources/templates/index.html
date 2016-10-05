@@ -15,7 +15,7 @@
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar">
@@ -55,29 +55,36 @@
             For keeping books.
         </h3>
     </header>
-    <h2 class="sub-header">My books</h2>
+    <h2 class="sub-header col-md-3">My books</h2>
     <div ng-controller="BookController as booklist">
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Rating</th>
-                    <th>Lent</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="item in items" class="bookRow row">
-                    <td>{{item.id}}</td>
-                    <td>{{item.title}}</td>
-                    <td>{{item.author}}</td>
-                    <td>{{item.rating}}</td>
-                    <td>{{item.lent}}</td>
-                </tr>
-                </tbody>
-            </table>
+        <div>
+            <div class="row">
+                <div class="col-md-1">#</div>
+                <div class="col-md-2">Title</div>
+                <div class="col-md-2">Author</div>
+                <div class="col-md-1">Rating</div>
+                <div class="col-md-1">Lent</div>
+            </div>
+            <div ng-repeat="item in items" class="bookRow row">
+                <div class="book-info row">
+                    <div class="col-md-4">{{item.title}}</div>
+                    <div class="col-md-3">{{item.author}}</div>
+                    <div class="col-md-1">{{item.rating}}</div>
+                    <div class="col-md-1">{{item.lent}}</div>
+                    <button class="col-md-1 show-details" ng-click="showDetails($event)">more</button>
+                    <button class="col-md-1 show-details" ng-click="">edit</button>
+                </div>
+                <div class="book-details">
+                    <div>
+                        <p>Description:</p>
+                        <p>{{item.description}}</p>
+                    </div>
+                    <div>
+                        <p>Publisher:</p>
+                        <p>{{item.publisher}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div>
             <button type="button" ng-click="prevPage()">This is damned button</button>

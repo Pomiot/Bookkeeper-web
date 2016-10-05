@@ -1,11 +1,13 @@
 package com.pomiot.bookkeeper.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 public class Book {
@@ -20,7 +22,12 @@ public class Book {
     @NotNull
     private String author;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
+
+    private String publisher;
+
+    private Date publishedOn;
 
     private Boolean isLent;
 
@@ -87,5 +94,21 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public Date getPublishedOn() {
+        return publishedOn;
+    }
+
+    public void setPublishedOn(Date publishedOn) {
+        this.publishedOn = publishedOn;
     }
 }
