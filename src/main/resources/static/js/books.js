@@ -12,7 +12,7 @@
         $http.get('/books').then(loadData);
 
         $scope.reloadData = function(){
-                $http.get('/books').then(loadData);
+            $http.get('/books').then(loadData);
         }
 
         $scope.addBook = function(book){
@@ -38,6 +38,12 @@
             $log.log('inside showDetails()');
             $log.log($event);
             $($event.target).closest('.bookRow').find('.book-details').slideToggle();
+        }
+
+        $scope.showEdit = function($event){
+            $log.log('inside showDetails()');
+            $log.log($event);
+            $($event.target).closest('.bookRow').find('.book-modify-form').slideToggle();
         }
 
         $scope.showNewBookForm = function($event){

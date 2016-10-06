@@ -23,6 +23,10 @@ body {
     display: none;
 }
 
+.book-modify-form {
+    display: none;
+}
+
 .book-details {
     display: none;
     padding: 20px;
