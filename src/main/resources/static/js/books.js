@@ -11,6 +11,19 @@
         $log.log('initial load of data');
         $http.get('/books').then(loadData);
 
+        $scope.reloadData = function(){
+                $http.get('/books').then(loadData);
+        }
+
+        $scope.addBook = function(book){
+            $log.log('inside addBook()');
+            $log.log(book);
+            $http.post('/books', book).then(function(){
+                $scope.items.push(book);
+            }, function(){
+            $log.log("Fuckup during saving object")});
+        }
+
         $scope.nextPage = function(){
             $log.log('inside nextPage()');
             $http.get($scope.next20).then(loadData);
@@ -25,6 +38,12 @@
             $log.log('inside showDetails()');
             $log.log($event);
             $($event.target).closest('.bookRow').find('.book-details').slideToggle();
+        }
+
+        $scope.showNewBookForm = function($event){
+            $log.log('inside showDetails()');
+            $log.log($event);
+            $('#new-book-form').slideToggle();
         }
 
         function loadData(response){
