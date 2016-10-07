@@ -24,6 +24,24 @@
             $log.log("Fuckup during saving object")});
         }
 
+        $scope.modifyBook = function(book, item){
+            $log.log('book:');
+            $log.log(book);
+            $log.log('item:');
+            $log.log(item);
+
+            $http.put(item._links.self.href, book).then(function(data){
+                $log.log('data:');
+                $log.log(data);
+
+                item.title = book.title;
+                item.author = book.author;
+                item.rating = book.rating;
+                item.description = book.description;
+                item.publisher = book.publisher;
+            });
+        }
+
         $scope.nextPage = function(){
             $log.log('inside nextPage()');
             $http.get($scope.next20).then(loadData);
