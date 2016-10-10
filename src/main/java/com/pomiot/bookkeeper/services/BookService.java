@@ -3,6 +3,8 @@ package com.pomiot.bookkeeper.services;
 import com.pomiot.bookkeeper.model.Book;
 import com.pomiot.bookkeeper.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 

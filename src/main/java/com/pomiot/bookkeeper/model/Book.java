@@ -1,9 +1,6 @@
 package com.pomiot.bookkeeper.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -37,7 +34,18 @@ public class Book {
     @Max(10)
     private Integer rating;
 
+    @ManyToOne
+    private User owner;
+
     public Book() {
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public Boolean getRead() {
