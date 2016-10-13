@@ -1,5 +1,8 @@
 package com.pomiot.bookkeeper.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -8,62 +11,27 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
+    @Getter @Setter
     @Id
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
+    @Getter @Setter
     @Column(name = "password", nullable = false)
     @NotNull
     private String password;
 
+    @Getter @Setter
     @Column(name = "enabled", nullable = false)
     @NotNull
     private Boolean enabled;
 
+    @Getter @Setter
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Getter @Setter
     @OneToMany(mappedBy = "owner")
     List<Book> booksOwned;
-
-    public List<Book> getBooksOwned() {
-        return booksOwned;
-    }
-
-    public void setBooksOwned(List<Book> booksOwned) {
-        this.booksOwned = booksOwned;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 }

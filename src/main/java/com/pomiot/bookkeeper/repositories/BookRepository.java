@@ -6,17 +6,23 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.security.access.prepost.PostFilter;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
+
 @RepositoryRestResource
+@PreAuthorize("hasRole('USER')")
 public interface BookRepository extends CrudRepository<Book,Long> {
 
     @Override
-    @Query("select b from Book b where b.owner.username = ?#{ principal?.username }")
+    @PostFilter("filterObject.owner.username == authentication.name")
     Iterable<Book> findAll();
 
-    List<Book> findBookByTitleLikeIgnoreCase(@Param("title") String title);
+    @PostFilter("filterObject.owner.username == authentication.name")
+    Iterable<Book> findBookByTitleLikeIgnoreCase(@Param("title") String title);
 
-    List<Book> findBookByAuthorLikeIgnoreCase(@Param("author") String author);
+    @PostFilter("filterObject.owner.username == authentication.name")
+    Iterable<Book> findBookByAuthorLikeIgnoreCase(@Param("author") String author);
 }
