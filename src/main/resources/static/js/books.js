@@ -4,7 +4,10 @@
 
     app.controller('BookController', [ '$http', '$scope', '$log', 'BookService', function($http, $scope, $log, BookService){
 
-        $log.log(BookService);
+        $log.log('bookService:',BookService);
+        $log.log('scope:',$scope);
+
+        $scope.newBook = {};
 
         $scope.items = [];
         $scope.next20 = "";

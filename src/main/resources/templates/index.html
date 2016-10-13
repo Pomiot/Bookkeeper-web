@@ -68,11 +68,11 @@
         </div>
         <div id="new-book-form">
             <form>
-                <div>Title <input type="text" name="title" ng-model="book.title"/></div>
-                <div>Author <input type="text" name="author" ng-model="book.author"/></div>
-                <div>Rating <input type="number" name="rating" min="1" max="10" ng-model="book.rating"/></div>
-                <div>Description <textarea name="description" cols="40" rows="5" ng-model="book.description"></textarea></div>
-                <div><input type="submit" ng-click="addBook(book)"/></div>
+                <div>Title <input type="text" name="title" ng-model="newBook.title"/></div>
+                <div>Author <input type="text" name="author" ng-model="newBook.author"/></div>
+                <div>Rating <input type="number" name="rating" min="1" max="10" ng-model="newBook.rating"/></div>
+                <div>Description <textarea name="description" cols="40" rows="5" ng-model="newBook.description"></textarea></div>
+                <div><input type="submit" ng-click="addBook(newBook)"/></div>
                 <div><input type="reset"/></div>
             </form>
         </div>
@@ -105,22 +105,17 @@
                 </div>
                 <div class="book-modify-form">
                     <form>
-                        <div>Title <input type="text" name="title" ng-model="book.title" value="{{item.title}}"/></div>
-                        <div>Author <input type="text" name="author" ng-model="book.author" value="{{item.author}}"/></div>
-                        <div>Publisher <input type="text" name="author" ng-model="book.publisher" value="{{item.publisher}}"/></div>
-                        <div>Rating <input type="number" name="rating" min="1" max="10" ng-model="book.rating" value="{{item.rating}}"/></div>
-                        <div>Description <textarea name="description" cols="40" rows="5" ng-model="book.description" value="{{item.description}}"></textarea></div>
-                        <div><input type="submit" ng-click="modifyBook(book, item)"/></div>
+                        <div>Title <input type="text" name="title" ng-model="modifiedBook.title"/></div>
+                        <div>Author <input type="text" name="author" ng-model="modifiedBook.author"/></div>
+                        <div>Publisher <input type="text" name="author" ng-model="modifiedBook.publisher"/></div>
+                        <div>Rating <input type="number" name="rating" min="1" max="10" ng-model="modifiedBook.rating"/></div>
+                        <div>Description <textarea name="description" cols="40" rows="5" ng-model="modifiedBook.description"></textarea></div>
+                        <div><input type="submit" ng-click="modifyBook(modifiedBook, item)"/></div>
                         <div><input type="reset"/></div>
                     </form>
                 </div>
             </div>
         </div>
-        <div>
-            <button type="button" ng-click="prevPage()">This is damned button</button>
-            <button type="button" ng-click="nextPage()">This is damned as well</button>
-        </div>
-
     </div>
 </div>
 </body>

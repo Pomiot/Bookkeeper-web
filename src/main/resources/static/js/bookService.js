@@ -4,8 +4,8 @@ var bookServiceModule = angular.module('bookServiceModule', [])
 
     serv.addBook = function(book, items){
             $log.log('inside addBook()', book);
-            $http.post('/books', book).then(function(){
-            items.push(book);
+            $http.post('/books', book).then(function(response){
+            items.push(angular.copy(response.data));
         }, function(){
             $log.log("Fuckup during saving object")
         });
