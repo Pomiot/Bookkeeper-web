@@ -1,8 +1,10 @@
 (function(){
 
-    var app = angular.module('books', []);
+    var app = angular.module('books', ['bookServiceModule']);
 
-    app.controller('BookController', [ '$http', '$scope', '$log', function($http, $scope, $log){
+    app.controller('BookController', [ '$http', '$scope', '$log', 'BookService', function($http, $scope, $log, BookService){
+
+        $log.log(BookService);
 
         $scope.items = [];
         $scope.next20 = "";
@@ -16,30 +18,11 @@
         }
 
         $scope.addBook = function(book){
-            $log.log('inside addBook()');
-            $log.log(book);
-            $http.post('/books', book).then(function(){
-                $scope.items.push(book);
-            }, function(){
-            $log.log("Fuckup during saving object")});
+            BookService.addBook(book, $scope.items);
         }
 
         $scope.modifyBook = function(book, item){
-            $log.log('book:');
-            $log.log(book);
-            $log.log('item:');
-            $log.log(item);
-
-            $http.put(item._links.self.href, book).then(function(data){
-                $log.log('data:');
-                $log.log(data);
-
-                item.title = book.title;
-                item.author = book.author;
-                item.rating = book.rating;
-                item.description = book.description;
-                item.publisher = book.publisher;
-            });
+            BookService.modifyBook(book, item);
         }
 
         $scope.nextPage = function(){
@@ -53,20 +36,17 @@
         }
 
         $scope.showDetails = function($event){
-            $log.log('inside showDetails()');
-            $log.log($event);
+            $log.log('inside showDetails()', $event);
             $($event.target).closest('.bookRow').find('.book-details').slideToggle();
         }
 
         $scope.showEdit = function($event){
-            $log.log('inside showDetails()');
-            $log.log($event);
+            $log.log('inside showDetails()', $event);
             $($event.target).closest('.bookRow').find('.book-modify-form').slideToggle();
         }
 
         $scope.showNewBookForm = function($event){
-            $log.log('inside showDetails()');
-            $log.log($event);
+            $log.log('inside showDetails()', $event);
             $('#new-book-form').slideToggle();
         }
 
