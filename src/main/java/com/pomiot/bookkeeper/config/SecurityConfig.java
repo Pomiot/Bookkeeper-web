@@ -28,10 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/css/**", "/js/**", "images/**", "/index").permitAll()
+                .antMatchers("/css/**", "/js/**", "images/**", "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login")
+                .and()
+                .logout().logoutSuccessUrl("/login");
     }
 
     @Autowired
@@ -42,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

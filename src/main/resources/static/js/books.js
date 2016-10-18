@@ -2,7 +2,8 @@
 
     var app = angular.module('books', ['bookServiceModule']);
 
-    app.controller('BookController', [ '$http', '$scope', '$log', 'BookService', function($http, $scope, $log, BookService){
+    app.controller('BookController', [ '$http', '$scope', '$log', 'BookService',
+     function($http, $scope, $log, BookService){
 
         $log.log('bookService:',BookService);
         $log.log('scope:',$scope);
