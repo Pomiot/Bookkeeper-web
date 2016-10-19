@@ -29,6 +29,8 @@
 
         $scope.addBook = function(book){
             BookService.addBook(book, $scope.items);
+            document.getElementById("new-book-form").reset();
+            $scope.showNewBookForm();
         }
 
         $scope.modifyBook = function(book, item){
@@ -57,7 +59,7 @@
 
         $scope.showNewBookForm = function($event){
             $log.log('inside showDetails()', $event);
-            $('#new-book-form').slideToggle();
+            $('#new-book').slideToggle();
         }
 
         function loadData(response){

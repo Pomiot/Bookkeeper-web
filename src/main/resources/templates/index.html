@@ -60,12 +60,12 @@
             <div>
                 <h2 class="sub-header col-md-3" ng-click="reloadData()">My books</h2>
             </div>
-            <div id="new-book">
+            <div>
                 <h2 class="sub-header col-md-3" ng-click="showNewBookForm($event)">New book</h2>
             </div>
         </div>
-        <div id="new-book-form">
-            <form>
+        <div id="new-book">
+            <form id="new-book-form">
                 <div>Title <input type="text" name="title" ng-model="newBook.title"/></div>
                 <div>Author <input type="text" name="author" ng-model="newBook.author"/></div>
                 <div>Rating <input type="number" name="rating" min="1" max="10" ng-model="newBook.rating"/></div>

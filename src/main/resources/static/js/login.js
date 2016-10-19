@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+    var registerToggle = function() {
+        console.log("WHAT THE FUCK?@")
+        $("#register-div").slideToggle();
+    }
+
+    $("#show-register-bttn").click(registerToggle);
+
     $("#register").click(function() {
         var form_name = $("#reg_name").val();
         var form_email = $("#reg_email").val();
@@ -22,9 +29,4 @@ $(document).ready(function() {
         })
     }});
 
-    $("#show-register-bttn").click(registerToggle);
-
-     var registerToggle = function() {
-            $("#register-div").slideToggle();
-        }
 });
