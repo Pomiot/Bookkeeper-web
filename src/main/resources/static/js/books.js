@@ -37,14 +37,9 @@
             BookService.modifyBook(book, item);
         }
 
-        $scope.nextPage = function(){
-            $log.log('inside nextPage()');
-            $http.get($scope.next20).then(loadData);
-        }
-
-        $scope.prevPage = function(){
-            $log.log('inside prevPage()');
-            $http.get($scope.prev20).then(loadData);
+        $scope.deleteBook = function(item){
+            $log.log('deleting ', item);
+            BookService.deleteBook(item, $scope.items);
         }
 
         $scope.showDetails = function($event){
@@ -65,12 +60,6 @@
         function loadData(response){
             $log.log(response);
             $scope.items = response.data._embedded.books;
-            if(response.data._links.next !== undefined){
-                $scope.next20 = response.data._links.next.href;
-            }
-            if(response.data._links.prev !== undefined){
-                $scope.prev20 = response.data._links.prev.href;
-            }
         }
     }]);
 })();

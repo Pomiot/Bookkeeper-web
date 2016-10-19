@@ -21,5 +21,12 @@ var bookServiceModule = angular.module('bookServiceModule', [])
         });
     }
 
+    serv.deleteBook = function(book, items){
+        $http.delete(book._links.self.href).then(function(){
+            var index = items.indexOf(book);
+            items.splice(index, 1);
+        })
+    }
+
     return serv;
 })
