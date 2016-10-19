@@ -4,4 +4,6 @@ import com.pomiot.bookkeeper.model.User;
 
 public interface UserService {
     User getUserByUsername(String username);
+
+    User createUser(User user);
 }

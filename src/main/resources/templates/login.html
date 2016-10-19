@@ -2,15 +2,37 @@
 <html>
 <head>
     <title>Login to Bookkeeper</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/login.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 </head>
-<body onload='document.f.username.focus();'>
-<h3>Welcome to Bookkeeper</h3>
-<form name='f' action='/login' method='POST'>
-    <table>
-        <tr><td>User:</td><td><input type='text' name='username' value=''/></td></tr>
-        <tr><td>Password:</td><td><input type='password' name='password'/></td></tr>
-        <tr><td colspan='2'><input name="submit" type="submit" value="Login"/></td></tr>
-    </table>
-</form>
+<body onload='document.login-form.username.focus();'>
+<div class="container">
+    <h2>Welcome to Bookkeeper</h2>
+    <div>
+        <form name='login-form' action='/login' method='POST'>
+            <table>
+                <tr><td>User:</td><td><input type='text' name='username' value=''/></td></tr>
+                <tr><td>Password:</td><td><input type='password' name='password'/></td></tr>
+                <tr><td colspan='2'><input name="submit" type="submit" value="Login"/></td></tr>
+            </table>
+        </form>
+    </div>
+    <h4 id="show-register-bttn">Not a member?</h4>
+    <div id="register-div">
+        <span>Register then!</span>
+        <form name='register' id="register-form" method="post" action="#">
+            <table>
+                <tr><td>User:</td><td><input type='text' id="reg_name" name='username' value=''/></td></tr>
+                <tr><td>Email:</td><td><input id="reg_email" type='email' name='email'/></td></tr>
+                <tr><td>Password:</td><td><input id="reg_password" type='password' name='password'/></td></tr>
+                <tr><td>Confirm password:</td><td><input type='password' id="reg_cpassword" name='confirm-password'/></td></tr>
+                <tr><td colspan='2'><input name="submit" type="button" id="register" value="Register"/></td></tr>
+            </table>
+        </form>
+    </div>
+</div>
 </body>
 </html>

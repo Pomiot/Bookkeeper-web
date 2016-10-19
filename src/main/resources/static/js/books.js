@@ -17,6 +17,12 @@
         $log.log('initial load of data');
         $http.get('/books').then(loadData);
 
+        $scope.getUserDetails = function(){
+            $http.get('/user').then(function(data){
+                $log.log('user details: ', data);
+            })
+        }
+
         $scope.reloadData = function(){
             $http.get('/books').then(loadData);
         }
