@@ -10,28 +10,42 @@
 </head>
 <body>
 <div class="container">
-    <h2>Welcome to Bookkeeper</h2>
-    <div>
-        <form name='login-form' action='/login' method='POST'>
-            <table>
-                <tr><td>User:</td><td><input type='text' name='username' value=''/></td></tr>
-                <tr><td>Password:</td><td><input type='password' name='password'/></td></tr>
-                <tr><td colspan='2'><input name="submit" type="submit" value="Login"/></td></tr>
-            </table>
-        </form>
-    </div>
-    <h4 id="show-register-bttn">Not a member?</h4>
-    <div id="register-div">
-        <span>Register then!</span>
-        <form name='register' id="register-form" method="post" action="#">
-            <table>
-                <tr><td>User:</td><td><input type='text' id="reg_name" name='username' value=''/></td></tr>
-                <tr><td>Email:</td><td><input id="reg_email" type='email' name='email'/></td></tr>
-                <tr><td>Password:</td><td><input id="reg_password" type='password' name='password'/></td></tr>
-                <tr><td>Confirm password:</td><td><input type='password' id="reg_cpassword" name='confirm-password'/></td></tr>
-                <tr><td colspan='2'><input name="submit" type="button" id="register" value="Register"/></td></tr>
-            </table>
-        </form>
+    <div id="login-splash">
+        <h1>Welcome to Bookkeeper</h1>
+        <div id="login-div">
+            <form name='login-form' action='/login' method='POST'>
+                <div class="center-align">
+                    <p>login</p>
+                    <input type='text' name='username' value=''/>
+                </div>
+                <div>
+                    <p>pass</p>
+                    <input type='password' name='password'/>
+                </div>
+                <input name="submit" class="button" id="login-btn" type="submit" value="Login"/>
+            </form>
+        </div>
+        <h4 id="show-register-btn">Not a member?</h4>
+        <div id="register-div">
+            <p>Register then!</p>
+            <form name='register' id="register-form" method="post" action="#">
+                <div>
+                    <p>username</p>
+                    <input type='text' id="reg_name" name='username' value=''/></div>
+                <div>
+                    <p>email</p>
+                    <input id="reg_email" type='email' name='email'/></div>
+                <div>
+                    <p>pass</p>
+                    <input id="reg_password" type='password' name='password'/></div>
+                <div>
+                    <p>confirm pass</p>
+                    <input type='password' id="reg_cpassword" name='confirm-password'/>
+                </div>
+                <input name="submit" class="button" type="button" id="register-btn" value="Register"/>
+                <input name="cancel" class="button" type="button" id="cancel-btn" value="Cancel"/>
+            </form>
+        </div>
     </div>
 </div>
 </body>

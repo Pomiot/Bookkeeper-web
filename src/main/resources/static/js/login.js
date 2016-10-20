@@ -1,13 +1,17 @@
 $(document).ready(function() {
 
     var registerToggle = function() {
-        console.log("WHAT THE FUCK?@")
         $("#register-div").slideToggle();
+        $("#login-div").slideToggle();
     }
 
-    $("#show-register-bttn").click(registerToggle);
+    $("#show-register-btn").click(registerToggle);
+    $("#cancel-btn").click(function(){
+        registerToggle();
+        document.getElementById("register-form").reset();
+    });
 
-    $("#register").click(function() {
+    $("#register-btn").click(function() {
         var form_name = $("#reg_name").val();
         var form_email = $("#reg_email").val();
         var form_password = $("#reg_password").val();
