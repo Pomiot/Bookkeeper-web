@@ -1,5 +1,6 @@
 package com.pomiot.bookkeeper.services;
 
+import com.pomiot.bookkeeper.exceptions.UsernameAlreadyTakenException;
 import com.pomiot.bookkeeper.model.Role;
 import com.pomiot.bookkeeper.model.User;
 import com.pomiot.bookkeeper.repositories.UserRepository;
@@ -11,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public User getUserByUsername(String username) {
@@ -24,9 +25,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user) {
 
-        if(userRepository.exists(user.getUsername())){
-            //TODO: throw something here!
-            return null;
+        String username = user.getUsername();
+        if(userRepository.exists(username)){
+            throw new UsernameAlreadyTakenException();
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));

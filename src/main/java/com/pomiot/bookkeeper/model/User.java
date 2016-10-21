@@ -15,6 +15,7 @@ import java.util.List;
 public class User {
 
     @Id
+    @NotNull
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
@@ -24,6 +25,7 @@ public class User {
     private String password;
 
     @Column(name = "email", nullable = false)
+    @NotNull
     @Email
     private String email;
 

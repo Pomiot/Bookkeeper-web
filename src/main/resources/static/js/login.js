@@ -1,36 +1,92 @@
 $(document).ready(function() {
 
+    var registerFormFields = ["reg_name","reg_email","reg_password","reg_cpassword"];
+
     var registerToggle = function() {
         $("#register-div").slideToggle();
         $("#login-div").slideToggle();
+    };
+
+    var removeRegisterErrors = function(fields){
+        for(var i = 0; i < fields.length; i++){
+            document.getElementById(fields[i]).classList.remove("form-field-invalid");
+        }
+        $("#p-name-error").text("").hide();
+        $("#p-email-error").text("").hide();
+        $("#p-pass-error").text("").hide();
+        $("#p-cpass-error").text("").hide();
     }
 
     $("#show-register-btn").click(registerToggle);
     $("#cancel-btn").click(function(){
         registerToggle();
         document.getElementById("register-form").reset();
+        removeRegisterErrors(registerFormFields)
     });
 
-    $("#register-btn").click(function() {
-        var form_name = $("#reg_name").val();
-        var form_email = $("#reg_email").val();
-        var form_password = $("#reg_password").val();
-        var form_cpassword = $("#reg_cpassword").val();
-        if (form_name == '' || form_email == '' || form_password == '' || form_cpassword == '') {
-            alert("Not all fields were filled.");
-        } else if ((form_password.length) < 8) {
-            alert("Password too short, should be at least 8 chars.");
-        } else if (!(form_password).match(form_cpassword)) {
-            alert("Your passwords don't match.");
-        } else {
-            $.post("/user", {
-        username: form_name,
-        email: form_email,
-        password: form_password
-        }, function(data) {
-            document.getElementById("register-form").reset();
-            registerToggle();
-        })
-    }});
+    var formFieldsAreNotEmpty = function(fields){
+        var fieldsNotEmpty = true;
 
+        for(var i = 0; i < fields.length; i++){
+            if ($("#" + fields[i]).val() == ""){
+                document.getElementById(fields[i]).classList.add("form-field-invalid");
+                fieldsNotEmpty = false;
+            } else {
+                document.getElementById(fields[i]).classList.remove("form-field-invalid");
+            }
+        }
+        return fieldsNotEmpty;
+    };
+
+    var registerFormIsValid = function(){
+
+        var isValid = true;
+
+        if(!formFieldsAreNotEmpty(registerFormFields)){
+            isValid = false;
+        }
+
+        if ($("#reg_password").val().length < 8) {
+            document.getElementById("reg_password").classList.add("form-field-invalid");
+            $("#p-pass-error").text("Password length is shorter than 8.").show();
+            isValid = false;
+        } else {
+            document.getElementById("reg_password").classList.remove("form-field-invalid");
+            $("#p-pass-error").text("").hide();
+        }
+        if (!($("#reg_password").val() === $("#reg_cpassword").val())) {
+            document.getElementById("reg_cpassword").classList.add("form-field-invalid");
+            $("#p-cpass-error").text("Passwords don't match.").show();
+            isValid = false;
+        } else {
+            document.getElementById("reg_cpassword").classList.remove("form-field-invalid");
+            $("#p-cpass-error").text("").hide();
+        }
+
+        return isValid;
+    };
+
+    $("#register-btn").click(function() {
+        if(registerFormIsValid()){
+            var newUser = {
+                username: $("#reg_name").val(),
+                email: $("#reg_email").val(),
+                password: $("#reg_password").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/user",
+                data: newUser,
+                success: function(data){
+                    document.getElementById("register-form").reset();
+                    registerToggle();
+                },
+                error: function(data){
+                    document.getElementById("reg_name").classList.add("form-field-invalid");
+                    $("#p-name-error").text(data.responseJSON.message).show();
+                }
+            })
+        }
+    });
 });

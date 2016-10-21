@@ -48,3 +48,12 @@ input {
 .button {
     margin-top: 10px;
 }
+
+.form-field-invalid {
+    border: 1px solid red;
+}
+
+.invalid-label {
+    display: none;
+    color: red;
+}
