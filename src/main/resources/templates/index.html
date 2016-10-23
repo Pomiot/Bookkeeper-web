@@ -10,8 +10,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 
-    <script type="text/javascript" src="js/books.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/bookService.js"></script>
+    <script type="text/javascript" src="js/bookDirectives.js"></script>
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
@@ -29,19 +30,6 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </div>
@@ -54,15 +42,9 @@
             For keeping books.
         </h3>
     </header>
-
     <div ng-controller="BookController as booklist">
         <div id="book-links" class="row">
-            <div>
-                <h2 class="sub-header col-md-3" ng-click="reloadData()">My books</h2>
-            </div>
-            <div>
-                <h2 class="sub-header col-md-3" ng-click="showNewBookForm($event)">New book</h2>
-            </div>
+            <books-control></books-control>
         </div>
         <div id="new-book">
             <form id="new-book-form">
@@ -83,23 +65,10 @@
             </div>
             <div ng-repeat="item in items | orderBy:'title'" class="bookRow row">
                 <div class="book-info row">
-                    <div class="col-md-4" ng-bind="item.title"></div>
-                    <div class="col-md-3" ng-bind="item.author"></div>
-                    <div class="col-md-1" ng-bind="item.rating"></div>
-                    <div class="col-md-1" ng-bind="item.lent"></div>
-                    <button class="col-md-1 show-details" ng-click="showDetails($event)">more</button>
-                    <button class="col-md-1 show-details" ng-click="showEdit($event)">edit</button>
-                    <button class="col-md-1 show-details" ng-click="deleteBook(item)">delete</button>
+                    <book-basic-info></book-basic-info>
                 </div>
                 <div class="book-details">
-                    <div>
-                        <p>Description:</p>
-                        <p>{{item.description}}</p>
-                    </div>
-                    <div>
-                        <p>Publisher:</p>
-                        <p>{{item.publisher}}</p>
-                    </div>
+                    <book-additional-info></book-additional-info>
                 </div>
                 <div class="book-modify-form">
                     <form>

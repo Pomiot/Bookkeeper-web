@@ -1,4 +1,4 @@
-var bookServiceModule = angular.module('bookServiceModule', [])
+var bookServiceModule = angular.module('book-service', [])
 .factory('BookService', function($http, $log){
     var serv = {};
 
@@ -15,9 +15,9 @@ var bookServiceModule = angular.module('bookServiceModule', [])
         $log.log('book:', book);
         $log.log('item:', item);
 
-        $http.put(item._links.self.href, book).then(function(data){
-            $log.log('data:', data);
-            angular.copy(book, item);
+        $http.put(item._links.self.href, book).then(function(response){
+            $log.log('data:', response);
+            angular.copy(response.data, item);
         });
     }
 

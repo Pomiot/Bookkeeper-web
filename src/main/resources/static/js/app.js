@@ -1,18 +1,15 @@
 (function(){
 
-    var app = angular.module('books', ['bookServiceModule']);
+    var app = angular.module('books', ['book-service', 'book-directives']);
 
     app.controller('BookController', [ '$http', '$scope', '$log', 'BookService',
-     function($http, $scope, $log, BookService){
+    function($http, $scope, $log, BookService){
 
         $log.log('bookService:',BookService);
         $log.log('scope:',$scope);
 
         $scope.newBook = {};
-
         $scope.items = [];
-        $scope.next20 = "";
-        $scope.prev20 = "";
 
         $log.log('initial load of data');
         $http.get('/books').then(loadData);
@@ -44,6 +41,7 @@
 
         $scope.showDetails = function($event){
             $log.log('inside showDetails()', $event);
+            $log.log('closest book row: ', $($event.target).closest('.bookRow'))
             $($event.target).closest('.bookRow').find('.book-details').slideToggle();
         }
 
