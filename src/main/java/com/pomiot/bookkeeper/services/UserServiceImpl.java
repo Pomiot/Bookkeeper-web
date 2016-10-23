@@ -17,6 +17,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private MailingService mailingService;
+
     @Override
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -34,7 +37,11 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(true);
         user.setRole(Role.ROLE_USER);
 
-        return userRepository.save(user);
+        userRepository.save(user);
+        mailingService.sendEmailConfirmationMessage(user);
+
+        return user;
+
     }
 
 
