@@ -6,4 +6,6 @@ public interface UserService {
     User getUserByUsername(String username);
 
     User createUser(User user);
+
+    void verifyUserEmail(String passedToken);
 }

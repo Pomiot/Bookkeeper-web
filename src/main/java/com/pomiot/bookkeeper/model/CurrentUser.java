@@ -6,7 +6,8 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
     private User user;
 
     public CurrentUser(User user) {
-        super(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
+        super(user.getUsername(), user.getPassword(),
+                AuthorityUtils.createAuthorityList(user.getRole().toString()));
         this.user = user;
     }
 
@@ -16,6 +17,11 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 
     public Role getRole() {
         return user.getRole();
+    }
+
+    @Override
+    public boolean isEnabled() {
+       return user.getEnabled();
     }
 }
 

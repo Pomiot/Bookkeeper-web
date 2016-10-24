@@ -16,12 +16,13 @@ public class MailingService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendEmailConfirmationMessage(User user){
+    public void sendEmailConfirmationMessage(User user, String token){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(username);
         message.setTo(user.getEmail());
         message.setSubject("Welcome to Bookkeeper!");
-        message.setText("Hi there, " + user.getUsername() + "! Thanks for registering to Bookkeeper!");
+        message.setText("Hi there, " + user.getUsername() + "! Thanks for registering to Bookkeeper!" +
+                " http://localhost:8080/verify?token=" + token);
 
         mailSender.send(message);
     }
