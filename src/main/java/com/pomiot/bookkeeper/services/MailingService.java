@@ -13,6 +13,9 @@ public class MailingService {
     @Value("${email.username}")
     private String username;
 
+    @Value("${application.address")
+    private String appAddress;
+
     @Autowired
     private JavaMailSender mailSender;
 
@@ -22,7 +25,7 @@ public class MailingService {
         message.setTo(user.getEmail());
         message.setSubject("Welcome to Bookkeeper!");
         message.setText("Hi there, " + user.getUsername() + "! Thanks for registering to Bookkeeper!" +
-                " http://localhost:8080/verify?token=" + token);
+                "Please confirm email by following this link: " + appAddress + "/verify?token=" + token);
 
         mailSender.send(message);
     }
