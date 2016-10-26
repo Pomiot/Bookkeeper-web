@@ -1,0 +1,11 @@
+<div class="book-modify-form">
+    <form>
+        <div>Title <input type="text" name="title" ng-model="modifiedBook.title"/></div>
+        <div>Author <input type="text" name="author" ng-model="modifiedBook.author"/></div>
+        <div>Publisher <input type="text" name="author" ng-model="modifiedBook.publisher"/></div>
+        <div>Rating <input type="number" name="rating" min="1" max="10" ng-model="modifiedBook.rating"/></div>
+        <div>Description <textarea name="description" cols="40" rows="5" ng-model="modifiedBook.description"></textarea></div>
+        <div><input type="submit" ng-click="modifyBook(modifiedBook, item)"/></div>
+        <div><input type="reset"/></div>
+    </form>
+</div>

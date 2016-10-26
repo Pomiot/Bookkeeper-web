@@ -25,14 +25,16 @@
     app.directive('bookAddForm', function(){
         return {
             restrict: 'E',
-            templateUrl: '/fragments/book-add-form.html'
+            templateUrl: '/fragments/book-add-form.html',
+            scope: true
         };
     });
 
     app.directive('bookModifyForm', function(){
         return {
             restrict: 'E',
-            templateUrl: '/fragments/book-modify-form.html'
+            templateUrl: '/fragments/book-modify-form.html',
+            scope: true
         };
     });
 })();
