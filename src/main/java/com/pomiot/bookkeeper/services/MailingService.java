@@ -13,7 +13,7 @@ public class MailingService {
     @Value("${email.username}")
     private String username;
 
-    @Value("${application.address")
+    @Value("${application.address}")
     private String appAddress;
 
     @Autowired
