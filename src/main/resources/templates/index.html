@@ -43,28 +43,26 @@
         </h3>
     </header>
     <div ng-controller="BookController as booklist">
-        <div id="book-links" class="row">
-            <books-control></books-control>
-        </div>
+        <books-control></books-control>
         <book-add-form></book-add-form>
-        <div>
-            <div id="book-info-header" class="row">
+        <div class="book-table">
+            <div id="book-info-header" class="row hidden-sm-down">
                 <div class="col-md-4">Title</div>
                 <div class="col-md-3">Author</div>
                 <div class="col-md-1">Rating</div>
                 <div class="col-md-1">Lent</div>
             </div>
             <div ng-repeat="item in items | orderBy:'title'" class="bookRow row">
-                <div class="book-info row">
-                    <book-basic-info></book-basic-info>
-                </div>
-                <div class="book-details">
-                    <book-additional-info></book-additional-info>
-                </div>
+                <book-basic-info></book-basic-info>
+                <book-additional-info></book-additional-info>
                 <book-modify-form></book-modify-form>
             </div>
         </div>
     </div>
+    <footer>
+        <p>Bookkeeper by TG. Got questions? Contact <a href="mailto:grzesiak.t@gmail.com">
+            me</a>.</p>
+    </footer>
 </div>
 </body>
 </html>

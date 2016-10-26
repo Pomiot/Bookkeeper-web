@@ -1,7 +1,9 @@
-<div class="col-md-4" ng-bind="item.title"></div>
-<div class="col-md-3" ng-bind="item.author"></div>
-<div class="col-md-1" ng-bind="item.rating"></div>
-<div class="col-md-1" ng-bind="item.lent"></div>
-<button class="col-md-1 show-details" ng-click="showDetails($event)">more</button>
-<button class="col-md-1 show-details" ng-click="showEdit($event)">edit</button>
-<button class="col-md-1 show-details" ng-click="deleteBook(item)">delete</button>
+<div class="book-info row">
+    <div class="col-md-4" ng-bind="item.title"></div>
+    <div class="col-md-3" ng-bind="item.author"></div>
+    <div class="col-md-1" ng-bind="item.rating"></div>
+    <div class="col-md-1" ng-bind="item.lent"></div>
+    <button class="col-md-1 show-details" ng-click="showDetails($event)">more</button>
+    <button class="col-md-1 show-details" ng-click="showEdit($event)">edit</button>
+    <button class="col-md-1 show-details" ng-click="deleteBook(item)">delete</button>
+</div>
