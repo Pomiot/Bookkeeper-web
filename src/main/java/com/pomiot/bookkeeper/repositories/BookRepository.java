@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@CrossOrigin(allowedHeaders = "*", origins = "*",
-        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.PATCH})
+@CrossOrigin(methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT, RequestMethod.PATCH})
 @RepositoryRestResource
 public interface BookRepository extends PagingAndSortingRepository<Book, Long> {
 
