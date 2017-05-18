@@ -31,6 +31,8 @@ public class Book {
 
     private Boolean isLent;
 
+    private String lentTo;
+
     private Boolean isRead;
 
     @Min(1)
@@ -38,6 +40,14 @@ public class Book {
     private Integer rating;
 
     public Book() {
+    }
+
+    public String getLentTo() {
+        return lentTo;
+    }
+
+    public void setLentTo(String lentTo) {
+        this.lentTo = lentTo;
     }
 
     public Boolean getRead() {
