@@ -28,8 +28,10 @@ public class Book {
 
     private String publishedOn;
 
+
     private Boolean isLent;
 
+    @Column(name = "lent_to")
     private String lentTo;
 
     private Boolean isRead;
