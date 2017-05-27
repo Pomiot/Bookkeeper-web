@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
 public class Book {
@@ -27,7 +26,7 @@ public class Book {
 
     private String publisher;
 
-    private Date publishedOn;
+    private String publishedOn;
 
     private Boolean isLent;
 
@@ -104,11 +103,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public Date getPublishedOn() {
+    public String getPublishedOn() {
         return publishedOn;
     }
 
-    public void setPublishedOn(Date publishedOn) {
+    public void setPublishedOn(String publishedOn) {
         this.publishedOn = publishedOn;
     }
 }
